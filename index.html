@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIN // INDIE DEV + CYBER</title>
+  <meta name="description" content="Sin: solo indie game dev, second-year CSE student, learning cybersecurity. Makes games, breaks things.">
+  <meta name="theme-color" content="#ff9933">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' fill='%23ff9933' stroke='%23101014' stroke-width='6'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='34' text-anchor='middle' fill='%23101014'%3ES%3C/text%3E%3C/svg%3E">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SIN // INDIE DEV + CYBER">
+  <meta property="og:description" content="I make games and break things. Still figuring out which one I'm better at.">
+  <!-- TODO: once the site is live, add a preview image for link shares:
+       <meta property="og:image" content="https://YOUR-USERNAME.github.io/REPO/assets/img/og.png"> -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- NAV -->
+  <header class="topbar">
+    <a class="badge" href="#top" aria-label="Sin, back to top">
+      <span class="badge-name">SIN</span>
+      <span class="badge-tag">// INDIE DEV + CYBER</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#games">Games</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- HERO (paper band) -->
+    <section class="band band-paper hero" id="top">
+      <!-- decorative floating shapes -->
+      <div class="bg-shapes" aria-hidden="true">
+        <span class="shape s-star"   style="--k:0.25"><i></i></span>
+        <span class="shape s-circle" style="--k:0.12"><i></i></span>
+        <span class="shape s-square" style="--k:0.3"><i></i></span>
+        <span class="shape s-plus"   style="--k:0.18"><i></i></span>
+        <span class="shape s-zig"    style="--k:0.22"><i></i></span>
+        <span class="shape s-dot"    style="--k:0.2"><i></i></span>
+      </div>
+      <div class="wrap hero-grid">
+
+        <div class="hero-text">
+          <p class="status-line">
+            <span class="dot" aria-hidden="true"></span>
+            SOLO INDIE DEV / CYBER / SECOND-YEAR CSE / STILL LEARNING / MILDLY DUMB
+          </p>
+          <h1 class="headline">
+            I make <mark>games</mark> and <span class="outline">break things.</span>
+          </h1>
+          <p class="subhead">(still figuring out which one I'm better at)</p>
+          <div class="hero-actions">
+            <a class="btn" href="#games">See the game ↓</a>
+            <a class="btn btn-alt" href="#contact">Say hi</a>
+          </div>
+        </div>
+
+        <!-- Profile card. Photo: save it as assets/img/me.jpg and it replaces the placeholder. -->
+        <aside class="profile" aria-label="Profile" data-tilt="10">
+          <div class="profile-screen">
+            <div class="profile-placeholder" aria-hidden="true">
+              <span class="profile-initial">S</span>
+              <span class="profile-ph-text">no photo yet.<br>just vibes.</span>
+            </div>
+            <img class="profile-photo" src="assets/img/me.jpg" alt="Sin on a bench, face hidden under a cap, finishing a pizza" width="900" height="1200" fetchpriority="high" decoding="async" hidden>
+            <span class="photo-caption">Ate and left<br>all the crumbs</span>
+            <span class="tape tape-a">SOLO DEV</span>
+            <span class="tape tape-b">STILL LEARNING</span>
+          </div>
+          <dl class="profile-stats">
+            <div><dt>Player</dt><dd>Sin</dd></div>
+            <div><dt>Class</dt><dd>2nd-year CSE</dd></div>
+            <div><dt>Engine</dt><dd>Godot</dd></div>
+            <div><dt>Language</dt><dd>GDScript, Python</dd></div>
+            <div><dt>Side quest</dt><dd>Electric guitar</dd></div>
+            <div><dt>Cooking</dt><dd>SinOS <span class="muted">(an OS from scratch)</span></dd></div>
+          </dl>
+        </aside>
+
+        <div class="patch card">
+          <p class="patch-title"><span>PATCH NOTES</span><span class="patch-ver">v2.0.26</span></p>
+          <ul class="patch-list">
+            <li><b class="p-add">+ ADDED</b> a Smart India Hackathon game, built for actual school PCs</li>
+            <li><b class="p-add">+ ADDED</b> an operating system. In progress. Please do not boot.</li>
+            <li><b class="p-fix">~ FIXED</b> nothing, but with a lot of confidence</li>
+            <li><b class="p-del">− REMOVED</b> sleep schedule</li>
+            <li><b class="p-bug">! KNOWN BUG</b> I get injured every single football match. Am I Neymar?</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TICKER (decorative) -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track" data-dir="-1" data-speed="70">
+        <span>GODOT</span><span>GDSCRIPT</span><span>2D GAMES</span><span>LINUX</span><span>TRYHACKME</span><span>SINOS</span><span>BUGS (HANDMADE)</span>
+        <span>GODOT</span><span>GDSCRIPT</span><span>2D GAMES</span><span>LINUX</span><span>TRYHACKME</span><span>SINOS</span><span>BUGS (HANDMADE)</span>
+      </div>
+    </div>
+
+    <!-- 01 GAMES (saffron band; cards come from js/projects.js) -->
+    <section class="band band-saffron" id="games" aria-labelledby="games-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="section-num">01</span> Featured</p>
+            <h2 id="games-title">The game</h2>
+          </div>
+          <p class="section-desc">The one I'm proudest of. What it does, what it looks like, and honest credits.</p>
+        </div>
+        <div id="projects" class="projects">
+          <noscript><p class="note">Turn on JavaScript to see the projects.</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 MORE COMING (teal band) -->
+    <section class="band band-teal" id="more" aria-labelledby="more-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="section-num">02</span> In the oven</p>
+            <h2 id="more-title">More coming</h2>
+          </div>
+          <p class="section-desc">More projects show up here when they're real. No filler, promise.</p>
+        </div>
+        <div class="cook-grid">
+          <article class="card cook cook-main">
+            <p class="label">Currently cooking</p>
+            <h3 class="cook-title">SinOS</h3>
+            <p>An operating system written from scratch, because apparently making games solo wasn't enough pain. Does it boot? Ask me later.</p>
+            <div class="progress" role="img" aria-label="Progress: loading, slowly">
+              <span class="progress-fill"></span>
+              <span class="progress-text">LOADING… SLOWLY</span>
+            </div>
+          </article>
+          <article class="card cook cook-yellow">
+            <p class="label">Currently learning</p>
+            <h3 class="cook-title">Breaking stuff, legally</h3>
+            <p>TryHackMe rooms and a lot of time in a Linux terminal. Learning how things break so I can stop breaking them by accident.</p>
+          </article>
+          <a class="card cook cook-saffron cook-link" href="#contact">
+            <p class="label">Open slot</p>
+            <h3 class="cook-title">Your hackathon?</h3>
+            <p>Need someone who can ship a playable build at 4 a.m.? I'm in. →</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BELT 2 (decorative, runs the other way) -->
+    <div class="ticker ticker-alt" aria-hidden="true">
+      <div class="ticker-track" data-dir="1" data-speed="55">
+        <span>CAUTION: SOLO DEV</span><span>NO STUDIO</span><span>NO BUDGET</span><span>NO SLEEP</span><span>STILL SHIPPING</span><span>AM I NEYMAR</span>
+        <span>CAUTION: SOLO DEV</span><span>NO STUDIO</span><span>NO BUDGET</span><span>NO SLEEP</span><span>STILL SHIPPING</span><span>AM I NEYMAR</span>
+      </div>
+    </div>
+
+    <!-- 03 ABOUT (red band) -->
+    <section class="band band-red" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="section-num">03</span> The human</p>
+            <h2 id="about-title">About</h2>
+          </div>
+          <p class="section-desc">Short version: makes games, breaks things, sleeps occasionally.</p>
+        </div>
+        <div class="about-grid">
+          <p class="about-lead">Hi, I'm Sin. <span class="hl">Kushagra if you're my mom,</span> Sin everywhere else.</p>
+          <div class="about-body">
+            <p>Second-year CSE student who opens Godot more often than the lecture notes. I make small games solo, which means I'm also the artist, the sound guy and the entire QA team, and every one of them is underpaid.</p>
+            <p>Lately I've been poking at cybersecurity: TryHackMe rooms, living in a Linux terminal, and one very ambitious operating system that may or may not ever boot.</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat stat-paper"><span class="stat-num" data-count="projects">1</span><span class="stat-label">project shipped</span></div>
+          <div class="stat stat-teal"><span class="stat-num">0</span><span class="stat-label">operating systems that boot (yet)</span></div>
+          <div class="stat stat-yellow"><span class="stat-num">2nd</span><span class="stat-label">year of CSE</span></div>
+        </div>
+
+        <h3 class="label skills-label">Skills / tools</h3>
+        <!-- Add a skill: copy one <li> and change the text. -->
+        <ul class="tags tags-big">
+          <li>Godot</li>
+          <li>GDScript</li>
+          <li>2D game dev</li>
+          <li>Git / GitHub</li>
+          <li>Linux basics</li>
+          <li>Python</li>
+          <li>Cybersecurity (learning)</li>
+          <li>Aseprite (learning)</li>
+          <li>Electric guitar (learning)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 04 CONTACT (yellow band) -->
+    <section class="band band-yellow" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="section-num">04</span> Contact</p>
+            <h2 id="contact-title" class="contact-title">Slide into<br>my inbox.</h2>
+          </div>
+          <p class="section-desc">Teammate for the next hackathon, a playtester, or just want to tell me my game is mid? All valid.</p>
+        </div>
+        <!-- A button with an empty href stays hidden, so nothing shows up as a dead link. -->
+        <div class="contact-links">
+          <a class="contact-btn c-saffron" href="mailto:rickrolloperator@gmail.com" data-contact><span>Email</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-btn c-white" href="https://github.com/bigg-whale" data-contact target="_blank" rel="noopener"><span>GitHub</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-btn c-teal" href="https://www.instagram.com/yash_5am/" data-contact target="_blank" rel="noopener"><span>Instagram</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-btn c-ink" href="https://bigbonee.itch.io/" data-contact target="_blank" rel="noopener"><span>itch.io</span><span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="contact-empty card">Links coming soon. Still picking usernames that aren't taken.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="footer-big">GG. Thanks<br>for scrolling.</p>
+      <div class="footer-meta">
+        <p class="footer-brand">SIN // © 2026</p>
+        <p class="footer-joke">Works on my machine. Probably works on yours.</p>
+        <a class="footer-top" href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Music player. Never autoplays. Swap the song: replace assets/audio/trouble.mp3 and edit the track name below. -->
+  <div class="player" id="player">
+    <button class="player-btn disc" type="button" aria-label="Play music" aria-pressed="false">
+      <span class="disc-spin" aria-hidden="true"></span>
+      <span class="icon-play" aria-hidden="true"></span>
+    </button>
+    <div class="player-info">
+      <span class="player-label">ON LOOP RN</span>
+      <span class="player-track">Trouble · Frank Ocean</span>
+    </div>
+    <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <audio src="assets/audio/trouble.mp3" preload="none" loop></audio>
+  </div>
+
+  <script src="js/projects.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/player.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>
