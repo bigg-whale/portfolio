@@ -353,6 +353,21 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 
 .project-grid { display: grid; gap: 32px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); }
 .project-grid .project-title { font-size: clamp(1.8rem, 4vw, 2.4rem); }
+.project-grid-solo { grid-template-columns: 1fr; }
+.project-grid-solo .project { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+.project-grid-solo .project > .media { border-bottom: 0; border-right: var(--border); display: flex; align-items: center; }
+.project-grid-solo .project > .media > * { width: 100%; }
+@media (max-width: 760px) {
+  .project-grid-solo .project { grid-template-columns: 1fr; }
+  .project-grid-solo .project > .media { border-right: 0; border-bottom: var(--border); }
+}
+.project-title-link { text-decoration: none; }
+.project-title-link:hover { text-decoration: underline; text-decoration-color: var(--saffron); text-decoration-thickness: 5px; }
+
+/* "All projects" button under the homepage cards */
+.all-projects { display: flex; justify-content: center; }
+.btn-big { font-size: clamp(1rem, 2.4vw, 1.2rem); padding: 16px 30px; box-shadow: var(--shadow); }
+.btn-big:hover { box-shadow: 10px 10px 0 var(--ink); }
 
 /* ---------- tags ---------- */
 .tags { list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -371,6 +386,9 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 .cook-saffron { background: var(--saffron); }
 .cook-link { text-decoration: none; }
 .cook-link:hover .cook-title { text-decoration: underline; text-decoration-color: var(--ink); text-decoration-thickness: 4px; }
+.cook-more { margin-top: 14px; }
+.cook-more a { display: inline-block; font-family: var(--font-mono); font-weight: 500; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; text-decoration: none; background: var(--ink); color: var(--teal); padding: 7px 12px; box-shadow: 3px 3px 0 var(--saffron); transition: transform 0.12s ease, box-shadow 0.12s ease; }
+.cook-more a:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--saffron); }
 .cook-main .label { display: inline-block; align-self: flex-start; background: var(--ink); color: var(--teal); padding: 3px 8px; }
 
 .progress { position: relative; margin-top: auto; height: 36px; border: 3px solid var(--ink); background: var(--paper); overflow: hidden; }

@@ -1,8 +1,10 @@
 // =====================================================================
 // PROJECT LIST (data only)
 // Add a project = copy one { ... } block, paste it below, edit the values.
-// The first project with featured: true gets the big centerpiece layout;
-// every other project becomes a smaller card underneath it.
+// Order matters: the homepage shows the first project with featured: true as the
+// big centerpiece, then the next 2 projects as small cards, then an
+// "All projects" button. projects/index.html shows every project.
+// So put your best stuff near the top.
 //
 // Fields:
 //   num      small label above the title, e.g. "02 / GAME JAM"
@@ -16,8 +18,13 @@
 //             policy blocks media hosted on other websites)
 //   bullets  list of features / points
 //   tags     short labels, shown in capitals
-//   links    { itch: "", github: "" }  empty = that button is hidden
-//   featured true = big layout
+//   page     optional: this project's own detail page, e.g. "projects/sinos.html"
+//            (copy projects/sinos.html to make a new one). Adds a "View project" button.
+//   links    { play: "", itch: "", github: "" }  empty = that button is hidden
+//            play = a page on this site that runs it in the browser, e.g. "sinos/"
+//   featured true = the big centerpiece on the homepage (only the first one counts)
+//
+// All local paths (images, video, page, play) are written from the site root.
 // =====================================================================
 
 window.PROJECTS = [
@@ -46,5 +53,23 @@ window.PROJECTS = [
       github: ""  // not public yet: add the repo URL here when it is
     },
     featured: true
+  },
+  {
+    num: "02 / FROM SCRATCH",
+    title: "SinOS",
+    hook: "I wrote an operating system. It boots. For real. It has snake.",
+    blurb: "A 32-bit x86 OS written from zero in C and NASM assembly: own bootloader, multitasking, user programs, a FAT16 disk and a shell. No Linux underneath.",
+    images: [
+      "assets/img/sinos-1.png", // Sin Snake running in VGA mode 13h
+      "assets/img/sinos-2.png"  // the SinOS shell after quitting the game
+    ],
+    video: "",
+    bullets: [],
+    tags: ["C", "x86 Assembly", "OS Dev"],
+    page: "projects/sinos.html",
+    links: {
+      play: "sinos/",
+      github: "" // source repo is private for now
+    }
   }
 ];

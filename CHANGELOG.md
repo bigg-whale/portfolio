@@ -5,13 +5,18 @@ Format: Keep a Changelog. This project is not versioned; entries are dated.
 ## [Unreleased] - 2026-11-17
 
 ### Added
+- `projects/sinos.html`: SinOS project detail page (title, screenshots, what was built, shell commands, boot-chain breakdown, play call-to-action), styled by new `css/project.css`. No scripts; same CSP as the homepage.
+- `projects/index.html`: "All projects" page listing every entry in `window.PROJECTS` as a grid card (`#projects[data-mode="all"][data-root="../"]`).
+- SinOS is back in `js/projects.js` as a project, with new field `page` ("View project →" button and linked title, same tab).
+- `render.js`: homepage mode shows the first `featured` project large, then at most `HOME_EXTRA` (2) more cards, then an "All projects (N) →" button; a lone extra card gets the wide `.project-grid-solo` layout. `data-root` prefixes local paths for pages in subfolders.
 - `links.play` link key ("Play in browser ↗" label in `render.js`) for projects that run on this site. Not used yet: the SinOS project card is deliberately left out of `js/projects.js` (owner will add it separately); screenshots `assets/img/sinos-1..2.png` are in place for it.
 - `sinos/`: play page that boots SinOS in the browser with the v86 emulator (v86 0.5.473, vendored in `sinos/v86/`), a 1 MiB boot disk and a lazily fetched 16 MiB FAT16 data disk. Own CSP (see `docs/SECURITY.md`, `docs/adr/0002-sinos-in-browser-via-v86.md`).
 - `.progress-done` style: finished progress bar, full, without the "stuck" wobble.
 - `docs/adr/0002-sinos-in-browser-via-v86.md`; play page sections in the docs.
 
 ### Changed
-- Homepage: the "In the oven" SinOS card is now "Just shipped" ("BOOTED. FOR REAL.") and links to the play page; the stat now reads 1 operating system that boots; patch notes, profile card and About text no longer say it is unfinished.
+- Homepage: section 01 is now "The work" (nav "Work", hero button "See the work"); SinOS also appears in section 01, while its "Just shipped" card in "In the oven" stays (now with a "View project →" link, `.cook-more`); the stat reads 1 operating system that boots; patch notes, profile card and About text no longer say it is unfinished.
+- Patch note for SinOS reads "It boots. It has snake. Go touch it." (was "Please do boot.").
 
 ## [Unreleased] - 2026-11-16
 

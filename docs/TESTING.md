@@ -24,8 +24,9 @@ Run on a Range-capable static server (`python -m http.server` is INFERENCE-unsui
 4. `ls /disk`, then `write` a file on `/disk` and `cat` it back (network panel shows `data.img` requests with `Range` headers and 206 responses).
 5. `game`: Sin Snake starts, arrow keys/WASD steer, the page does not scroll, pause works, quit returns to the shell.
 6. Restart button reboots; disk writes from before are gone (memory-only).
-7. Homepage: section 01 shows only the SIH game ("The game"); the "In the oven" SinOS card shows "Just shipped", full bar "BOOTED. FOR REAL.", and its "play SinOS" link opens `sinos/`; stats read 1 project / 1 OS; with reduced motion and with JS off the page is readable.
-8. `node --check` on `js/render.js`, `js/projects.js` and `sinos/play.js`.
+7. Homepage: section 01 "The work" shows SIH large, SinOS as a wide card (View project → `projects/sinos.html`, Play in browser → `sinos/`), then "All projects (2) →" → `projects/`; "In the oven" has the "Just shipped" SinOS card (play link → `sinos/`, View project → `projects/sinos.html`) plus 2 cards; stats read 2 projects / 1 OS; with reduced motion and with JS off the page is readable.
+8. `/projects/sinos.html`: no console errors or CSP violations; both screenshots load; every "Boot" / "Play" button opens `../sinos/`; nav and back links return to the homepage sections; at 375 px wide no horizontal scroll. `/projects/` lists both projects, SinOS links resolve to `/projects/sinos.html` and `/sinos/`, no horizontal scroll at 375 px. (VERIFIED 2026-11-17 in the in-app Chromium, desktop and 375 px.)
+9. `node --check` on `js/render.js`, `js/projects.js` and `sinos/play.js`.
 
 Verified 2026-11-17 in a local Chromium (VERIFIED): steps 1-6 for boot, shell commands, `/disk` listing + write + read back, game start, arrow-key steering, pause, quit to shell, and arrow keys not scrolling the page while the screen has focus.
 Not verified (UNKNOWN): Firefox and Safari; mobile (the page states a physical keyboard is needed); the real GitHub Pages deployment (range requests on Pages are expected to work); homepage step 7 and Restart behaviour were not part of that browser run unless re-run.

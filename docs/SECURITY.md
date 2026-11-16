@@ -36,6 +36,9 @@ Rules this imposes on future edits (violations fail silently on screen and show 
 
 VERIFIED in Chromium: inline script, inline style attribute, `innerHTML`, cross-origin `fetch` and cross-origin image are all blocked; the unmodified page logs zero CSP violations over http and `file://`.
 
+## Project detail pages (`projects/*.html`)
+Carry the homepage CSP unchanged and load no scripts. Any change to the homepage CSP must be copied into them.
+
 ## Play page CSP (`sinos/index.html`)
 Rationale: `docs/adr/0002-sinos-in-browser-via-v86.md`. Each difference from the homepage policy:
 

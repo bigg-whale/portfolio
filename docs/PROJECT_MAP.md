@@ -9,11 +9,14 @@ One-page personal portfolio for "Sin", plus one sub-page (`sinos/`) that boots t
 ```
 index.html        markup for every section, CSP meta, social-preview meta, music player
 css/style.css     all styling; colour tokens in :root; motion rules gated on html.js-motion
+css/project.css   extra styles for project detail pages only (loaded after style.css)
+projects/index.html  "All projects" page: renders every project (data-mode="all", data-root="../")
+projects/sinos.html  SinOS detail page; static, no JS, homepage CSP; links ../sinos/ to play
 js/projects.js    data only: window.PROJECTS
 js/render.js      builds project cards from window.PROJECTS; safeUrl; profile photo swap; profile card alignment
 js/player.js      play / pause for the corner audio player
 js/motion.js      all animation: hero entrance, scroll reveals, count-up, tickers, tilt
-assets/img        me.jpg (profile), sih-1..4.png (screenshots; sih-1 doubles as og:image), sinos-1..2.png (SinOS screenshots, reserved for a future SinOS project card; currently unreferenced)
+assets/img        me.jpg (profile), sih-1..4.png (screenshots; sih-1 doubles as og:image), sinos-1..2.png (SinOS screenshots, used by projects/sinos.html; sinos-1 is its og:image)
 assets/audio      trouble.mp3
 sinos/            play page, separate document with its own (relaxed) CSP:
   index.html      page shell + CSP meta
@@ -26,7 +29,11 @@ docs/             this documentation set
 Local-only, git-ignored: `.claude/`, `.playwright-mcp/`, `DESIGN.md`, `portfolio-design.md`.
 
 ## Entry points and load order
-`sinos/index.html` is an independent entry point (linked from the "Just shipped" SinOS card in the "In the oven" section of `index.html`; SinOS is not in `window.PROJECTS`); it loads `v86/libv86.js` then `play.js` and shares no JS with the homepage. See `docs/ARCHITECTURE.md`.
+`projects/index.html` loads `../js/projects.js` → `../js/render.js` → `../js/motion.js` (no player). `projects/sinos.html` is a static detail page reached from a project's `page` field ("View project →"); it loads only `../css/style.css` and `../css/project.css`, no scripts. All links on both are relative (`../`), so they work on GitHub Pages under `/portfolio/` and from disk.
+
+Adding a project: one object in `js/projects.js` (order = homepage priority); for a detail page, copy `projects/sinos.html`, edit it, and set `page: "projects/<name>.html"`.
+
+`sinos/index.html` is an independent entry point (linked from the SinOS card via `links.play = "sinos/"` and from `projects/sinos.html`); it loads `v86/libv86.js` then `play.js` and shares no JS with the homepage. See `docs/ARCHITECTURE.md`.
 
 `index.html` loads, at the end of `<body>` and in this order: `projects.js` → `render.js` → `player.js` → `motion.js`. Order matters: `render.js` needs `window.PROJECTS`; `motion.js` decorates the cards `render.js` created.
 

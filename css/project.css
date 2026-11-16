@@ -1,0 +1,84 @@
+/* =====================================================================
+   PROJECT DETAIL PAGES (projects/*.html)
+   Loaded after css/style.css; reuses its colours, cards, buttons and bands.
+   ===================================================================== */
+
+/* "Back" strip under the nav */
+.crumb { background: var(--paper); border-bottom: var(--border); padding: 10px 0; }
+.crumb a { font-family: var(--font-mono); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.08em; text-decoration: none; }
+.crumb a:hover { text-decoration: underline; text-decoration-color: var(--saffron); }
+
+/* ---------- all-projects page ---------- */
+.pd-h1 { font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; }
+.nav a[aria-current="page"] { border-color: var(--ink); background: var(--white); }
+
+/* ---------- title ---------- */
+.pd-hero-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 32px clamp(32px, 5vw, 64px); align-items: center; }
+.pd-title { font-size: clamp(4.5rem, 16vw, 11rem); font-weight: 900; line-height: 0.85; }
+.pd-tagline { font-family: var(--font-head); font-weight: 800; text-transform: uppercase; font-size: clamp(1.4rem, 3.4vw, 2.1rem); line-height: 1; margin: 18px 0 28px; }
+.pd-summary { padding: clamp(20px, 3vw, 28px); transform: rotate(1.2deg); font-size: 1.02rem; }
+.pd-summary:hover { transform: rotate(1.2deg) translate(-3px, -3px); }
+
+/* ---------- screenshots ---------- */
+.pd-media { background: var(--ink); border-bottom: var(--border); padding: clamp(40px, 6vw, 72px) 0; }
+.pd-shots { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 3vw, 32px); }
+.pd-shot { margin: 0; box-shadow: 8px 8px 0 var(--saffron); }
+.pd-shot:hover { box-shadow: 11px 11px 0 var(--saffron); }
+.pd-shot a { display: block; border-bottom: var(--border); background: var(--ink); }
+.pd-shot img { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; image-rendering: pixelated; }
+.pd-shot figcaption { font-family: var(--font-mono); font-size: 0.82rem; padding: 10px 14px; }
+
+/* ---------- what I built ---------- */
+.pd-split { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); gap: clamp(32px, 5vw, 64px); align-items: start; }
+.pd-h2 { font-size: clamp(3rem, 9vw, 5.5rem); font-weight: 900; margin-bottom: 22px; }
+.pd-features {
+  list-style: none; margin: 24px 0 0; padding: 0;
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 3px solid var(--ink); background: var(--white);
+}
+.pd-features li {
+  font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 10px 14px; border-bottom: 2px solid var(--ink);
+}
+.pd-features li:nth-child(odd) { border-right: 2px solid var(--ink); }
+.pd-features li:nth-last-child(-n+2) { border-bottom: 0; }
+
+.pd-side { background: var(--yellow); padding: clamp(20px, 3vw, 28px); position: sticky; top: 96px; }
+.pd-side-title { font-size: clamp(2.2rem, 5vw, 3rem); font-weight: 900; border-bottom: var(--border); padding-bottom: 10px; margin-bottom: 12px; }
+.pd-side-sub { font-family: var(--font-mono); font-size: 0.85rem; }
+.pd-side .bullets li::before { background: var(--teal); }
+
+code { font-family: var(--font-mono); font-size: 0.92em; background: var(--ink); color: var(--yellow); padding: 1px 6px; }
+
+/* ---------- how it boots ---------- */
+.pd-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(16px, 2vw, 24px); }
+.pd-steps li { padding: 20px 18px; display: flex; flex-direction: column; gap: 8px; }
+.pd-steps h3 { font-size: 1.7rem; font-weight: 900; }
+.pd-steps p { font-size: 0.92rem; margin: 0; }
+.pd-step-num { align-self: flex-start; font-family: var(--font-mono); font-size: 0.85rem; background: var(--ink); color: var(--saffron); padding: 2px 8px; }
+
+/* ---------- play CTA ---------- */
+.pd-cta { text-align: center; display: grid; justify-items: center; gap: 4px; }
+.pd-cta p { max-width: 46ch; font-weight: 500; margin-bottom: 22px; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 960px) {
+  .pd-hero-grid, .pd-split { grid-template-columns: 1fr; }
+  .pd-side { position: static; }
+  .pd-steps { grid-template-columns: repeat(2, 1fr); }
+  .pd-steps li:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  .pd-shots { grid-template-columns: 1fr; }
+  .pd-features { grid-template-columns: 1fr; }
+  .pd-features li:nth-child(odd) { border-right: 0; }
+  .pd-features li:nth-last-child(2) { border-bottom: 2px solid var(--ink); }
+  .pd-steps { grid-template-columns: 1fr; }
+  .pd-summary, .pd-summary:hover { transform: none; }
+  .pd-cta .btn { width: 100%; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pd-summary:hover { transform: rotate(1.2deg); }
+}

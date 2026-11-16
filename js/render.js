@@ -5,6 +5,18 @@
   // Link keys with a nice label. "play" = a page on this site that runs the project in the browser (relative path, e.g. "sinos/").
   var LINK_LABELS = { play: "Play in browser ↗", itch: "Play on itch.io ↗", github: "Source on GitHub ↗" };
 
+  // How many non-featured projects the homepage shows before "All projects" takes over.
+  var HOME_EXTRA = 2;
+
+  // Paths in projects.js are written from the site root ("assets/img/x.png", "projects/x.html").
+  // A page in a subfolder sets data-root="../" on #projects so those paths still resolve.
+  var ROOT = "";
+  function local(path) {
+    if (typeof path !== "string" || !path.trim()) return "";
+    // only prefix plain relative paths; full URLs and absolute paths stay as they are
+    return /^[a-z][a-z0-9+.-]*:|^\/|^#/i.test(path.trim()) ? path : ROOT + path.trim();
+  }
+
   // Small helper: make an element with a class and optional text.
   function el(tag, className, text) {
     var node = document.createElement(tag);
@@ -33,8 +45,8 @@
 
   function buildMedia(p) {
     var wrap = el("div", "media");
-    var images = (p.images || []).map(safeUrl).filter(Boolean);
-    var video = safeUrl(p.video);
+    var images = (p.images || []).map(local).map(safeUrl).filter(Boolean);
+    var video = safeUrl(local(p.video));
 
     if (video) {
       var v = el("video", "media-main");
@@ -95,8 +107,17 @@
   }
 
   function fillBody(body, p) {
+    var page = safeUrl(local(p.page));
     if (p.num) body.appendChild(el("p", "label", p.num));
-    body.appendChild(el("h3", "project-title", p.title || "Untitled"));
+    var h = el("h3", "project-title");
+    if (page) {
+      var ta = el("a", "project-title-link", p.title || "Untitled");
+      ta.href = page;
+      h.appendChild(ta);
+    } else {
+      h.textContent = p.title || "Untitled";
+    }
+    body.appendChild(h);
     if (p.hook) body.appendChild(el("p", "project-hook", p.hook));
     if (p.blurb) body.appendChild(el("p", "project-blurb", p.blurb));
 
@@ -117,8 +138,14 @@
     // Links: only render the ones that have a URL. Never a dead button.
     var links = p.links || {};
     var actions = el("div", "project-links");
+    // "page" = this project's own detail page on this site; opens in the same tab.
+    if (page) {
+      var more = el("a", "btn", "View project →");
+      more.href = page;
+      actions.appendChild(more);
+    }
     Object.keys(links).forEach(function (key) {
-      var url = safeUrl(links[key]);
+      var url = safeUrl(key === "play" ? local(links[key]) : links[key]);
       if (!url) return;
       var a = el("a", "btn" + (actions.children.length ? " btn-alt" : ""), LINK_LABELS[key] || key + " ↗");
       a.href = url;
@@ -129,24 +156,44 @@
     if (actions.children.length) body.appendChild(actions);
   }
 
+  // data-mode="home" (default): featured project big, then up to HOME_EXTRA others,
+  // then an "All projects" button. data-mode="all": every project as a grid card.
   function renderProjects() {
     var root = document.getElementById("projects");
     var list = window.PROJECTS || [];
     if (!root || !list.length) return;
+    ROOT = root.getAttribute("data-root") || "";
+    var mode = root.getAttribute("data-mode") || "home";
 
-    var featured = list.filter(function (p) { return p.featured; });
-    var rest = list.filter(function (p) { return !p.featured; });
-
-    featured.forEach(function (p) { root.appendChild(buildCard(p)); });
-    if (rest.length) {
-      var grid = el("div", "project-grid");
-      rest.forEach(function (p) { grid.appendChild(buildCard(p)); });
+    var grid;
+    if (mode === "all") {
+      grid = el("div", "project-grid");
+      list.forEach(function (p) { grid.appendChild(buildCard(Object.assign({}, p, { featured: false }))); });
       root.appendChild(grid);
+    } else {
+      var featured = list.filter(function (p) { return p.featured; }).slice(0, 1);
+      var rest = list.filter(function (p) { return featured.indexOf(p) < 0; });
+      featured.forEach(function (p) { root.appendChild(buildCard(p)); });
+      var shown = rest.slice(0, HOME_EXTRA);
+      if (shown.length) {
+        // a lone card goes wide (media | text) instead of sitting in a narrow column
+        grid = el("div", shown.length === 1 ? "project-grid project-grid-solo" : "project-grid");
+        shown.forEach(function (p) { grid.appendChild(buildCard(Object.assign({}, p, { featured: false }))); });
+        root.appendChild(grid);
+      }
+      var allUrl = safeUrl(local("projects/"));
+      if (allUrl) {
+        var bar = el("div", "all-projects");
+        var a = el("a", "btn btn-big", "All projects (" + list.length + ") →");
+        a.href = allUrl;
+        bar.appendChild(a);
+        root.appendChild(bar);
+      }
     }
 
     // Titles and counters follow the real list, so numbers never disagree.
     var title = document.getElementById("games-title");
-    if (title && list.length > 1) title.textContent = "The games";
+    if (title && mode !== "all" && list.length > 1) title.textContent = "The work";
     document.querySelectorAll('[data-count="projects"]').forEach(function (n) {
       n.textContent = String(list.length);
       var label = n.nextElementSibling;

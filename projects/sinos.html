@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Same policy as the homepage (no scripts at all on this page). See docs/SECURITY.md before editing. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>SinOS // SIN</title>
+  <meta name="description" content="SinOS: a 32-bit x86 operating system Sin wrote from scratch in C and assembly. What it does, how it's built, and a link to boot it in your browser.">
+  <meta name="theme-color" content="#ff9933">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' fill='%23ff9933' stroke='%23101014' stroke-width='6'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='34' text-anchor='middle' fill='%23101014'%3ES%3C/text%3E%3C/svg%3E">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SinOS // SIN">
+  <meta property="og:description" content="I wrote an operating system. It boots. It has snake.">
+  <meta property="og:url" content="https://bigg-whale.github.io/portfolio/projects/sinos.html">
+  <meta property="og:image" content="https://bigg-whale.github.io/portfolio/assets/img/sinos-1.png">
+  <meta property="og:image:width" content="640">
+  <meta property="og:image:height" content="400">
+  <meta property="og:image:alt" content="Sin Snake running on SinOS in VGA mode 13h">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://bigg-whale.github.io/portfolio/projects/sinos.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/project.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="topbar">
+    <a class="badge" href="../" aria-label="Sin, back to the portfolio">
+      <span class="badge-name">SIN</span>
+      <span class="badge-tag">// INDIE DEV + CYBER</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="./">Work</a>
+      <a href="../#about">About</a>
+      <a href="../#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="crumb">
+    <div class="wrap"><a href="./">&larr; All projects</a></div>
+  </div>
+
+  <main id="main">
+
+    <!-- TITLE (teal band) -->
+    <section class="band band-teal pd-hero" aria-labelledby="pd-title">
+      <div class="wrap pd-hero-grid">
+        <div>
+          <p class="kicker"><span class="section-num">02</span> Operating system, from scratch</p>
+          <h1 id="pd-title" class="pd-title">SinOS</h1>
+          <p class="pd-tagline">It boots. It has snake. Go touch it.</p>
+          <div class="hero-actions">
+            <a class="btn" href="../sinos/">Boot it in your browser &rarr;</a>
+          </div>
+        </div>
+        <div class="card pd-summary">
+          <p>A 32-bit x86 operating system I wrote from zero in C and NASM assembly. Own bootloader, interrupts, paging, multitasking, user programs, a FAT16 disk and a shell. No Linux underneath. Just me and a frankly upsetting number of triple faults.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREENSHOTS (ink band) -->
+    <section class="pd-media" aria-label="Screenshots">
+      <div class="wrap pd-shots">
+        <figure class="card pd-shot">
+          <a href="../assets/img/sinos-1.png" target="_blank" rel="noopener noreferrer"><img src="../assets/img/sinos-1.png" alt="Sin Snake running on SinOS in VGA mode 13h" width="640" height="400" decoding="async"></a>
+          <figcaption>Sin Snake, drawn pixel by pixel in VGA mode 13h</figcaption>
+        </figure>
+        <figure class="card pd-shot">
+          <a href="../assets/img/sinos-2.png" target="_blank" rel="noopener noreferrer"><img src="../assets/img/sinos-2.png" alt="The SinOS shell after quitting the game" width="720" height="400" loading="lazy" decoding="async"></a>
+          <figcaption>Back at the shell after rage-quitting snake</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- WHAT I BUILT (paper band) -->
+    <section class="band band-paper" aria-labelledby="built-title">
+      <div class="wrap pd-split">
+        <div>
+          <p class="label">The actual stuff</p>
+          <h2 id="built-title" class="pd-h2">What I built</h2>
+          <p>SinOS starts from a two-stage bootloader I wrote myself (it also boots from GRUB), switches the CPU into 32-bit protected mode and hands over to a kernel written in C. From there it sets up its own interrupt handling, a timer and a keyboard driver, so it can actually react to you.</p>
+          <p>On top of that sits the part that makes it a real OS and not a fancy screensaver: paging and a heap for memory, preemptive multitasking, and user programs that run in ring 3 and have to ask the kernel nicely (system calls) for anything they want. It reads and writes a real FAT16 disk, and the shell lets you poke at all of it.</p>
+          <ul class="tags">
+            <li>C</li>
+            <li>x86 Assembly</li>
+            <li>NASM</li>
+            <li>OS Dev</li>
+            <li>QEMU</li>
+            <li>FAT16</li>
+          </ul>
+          <ul class="pd-features">
+            <li>Two-stage bootloader</li>
+            <li>32-bit protected mode</li>
+            <li>Interrupts, timer, keyboard</li>
+            <li>Paging + heap</li>
+            <li>Preemptive multitasking</li>
+            <li>Ring-3 programs + syscalls</li>
+            <li>FAT16 read / write</li>
+            <li>VGA mode 13h graphics</li>
+          </ul>
+          <div class="project-links">
+            <a class="btn" href="../sinos/">Play in browser &rarr;</a>
+          </div>
+        </div>
+
+        <aside class="card pd-side" aria-labelledby="shell-title">
+          <h2 id="shell-title" class="pd-side-title">The shell</h2>
+          <p class="pd-side-sub">Things you can type at <code>sinos&gt;</code></p>
+          <ul class="bullets">
+            <li><code>ls</code> / <code>cat</code>: look around the disk</li>
+            <li><code>write</code> / <code>rm</code>: make files, then regret them</li>
+            <li><code>run</code>: start a user program</li>
+            <li><code>ps</code>: see what's running</li>
+            <li><code>game</code>: the real reason you're here</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- HOW IT FITS TOGETHER (saffron band) -->
+    <section class="band band-saffron" aria-labelledby="stack-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="label">The breakdown</p>
+            <h2 id="stack-title">How it boots</h2>
+          </div>
+          <p class="section-desc">From power button to snake, one layer at a time.</p>
+        </div>
+        <ol class="pd-steps">
+          <li class="card"><span class="pd-step-num">01</span><h3>Bootloader</h3><p>Two stages, written in assembly. Loads the kernel off the disk and flips the CPU into protected mode.</p></li>
+          <li class="card"><span class="pd-step-num">02</span><h3>Kernel</h3><p>C from here on. Interrupt table, timer, keyboard driver, paging and a heap.</p></li>
+          <li class="card"><span class="pd-step-num">03</span><h3>Tasks</h3><p>Preemptive multitasking. User programs live in ring 3 and talk to the kernel through system calls.</p></li>
+          <li class="card"><span class="pd-step-num">04</span><h3>Disk + shell</h3><p>A FAT16 driver that reads and writes real files, and a shell to boss them around.</p></li>
+          <li class="card"><span class="pd-step-num">05</span><h3>Pixels</h3><p>VGA mode 13h graphics, and Sin Snake, an original snake game that saves its high score to disk.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PLAY CTA (yellow band) -->
+    <section class="band band-yellow" aria-labelledby="play-title">
+      <div class="wrap pd-cta">
+        <h2 id="play-title" class="pd-h2">Don't take my word for it.</h2>
+        <p>It runs right here in your browser, inside a PC emulator. Needs a real keyboard. Snake skills not included.</p>
+        <a class="btn" href="../sinos/">Boot SinOS &rarr;</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p class="footer-big">Back to<br>the rest.</p>
+      <div class="footer-meta">
+        <p class="footer-brand">SIN // © 2026</p>
+        <p class="footer-joke">Works on my machine. Also works on an emulated one.</p>
+        <a class="footer-top" href="../">&larr; Back to the portfolio</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
