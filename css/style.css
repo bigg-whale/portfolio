@@ -688,7 +688,9 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
   transform: perspective(500px)
     rotateX(calc(var(--sy, 0) * var(--k, 0.2) * 0.25deg))
     rotateY(calc(var(--sy, 0) * var(--k, 0.2) * -0.4deg));
-  transform-style: preserve-3d;
+  /* keep this flat: preserve-3d here made scrolling stutter on real screens, and it draws the same
+     picture either way because everything inside a shape only moves in 2D */
+  transform-style: flat;
 }
 .shape i { display: block; animation: bob 6s ease-in-out infinite alternate; }
 .shape:nth-child(2) i { animation-duration: 7.5s; animation-delay: -2s; }

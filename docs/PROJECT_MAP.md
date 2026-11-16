@@ -46,6 +46,7 @@ There is no build, linter config or automated test suite.
 
 ## Gotchas
 - The hero entrance waits for `requestAnimationFrame`; a tab that is not being painted (some embedded previews) stays blank until it is shown.
+- Do not put `transform-style: preserve-3d` back on `.shape` (hero floating shapes). It caused owner-visible scroll stutter in Chrome/Brave 157 that frame-timing traces did not show; see `CHANGELOG.md`, Performance. Nothing inside a shape may use a 3D transform, or the flat rendering will stop matching.
 - Browsers cache aggressively on `python -m http.server`; hard-reload after edits.
 - Pages serves every tracked file, including `README.md` and `docs/`.
 - `og:image`, `og:url` and the canonical link are absolute URLs; update them if the repo or domain changes.
