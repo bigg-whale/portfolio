@@ -2,3 +2,7 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# local tool folders
+.claude/
+.playwright-mcp/

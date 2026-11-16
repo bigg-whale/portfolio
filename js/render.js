@@ -13,13 +13,21 @@
   }
 
   // Only allow normal web links and local files; anything else counts as empty.
+  // The browser's own URL parser decides what the link really is, so disguised
+  // schemes ("java\tscript:", " JaVaScript:", data:, vbscript: ...) can't slip through.
   function safeUrl(url) {
     if (typeof url !== "string") return "";
     url = url.trim();
     if (!url) return "";
-    if (/^https?:\/\//i.test(url)) return url;
-    if (/^[a-z][a-z0-9+.-]*:/i.test(url)) return ""; // javascript:, data:, etc.
-    return url; // relative path like assets/img/x.png
+    try {
+      var parsed = new URL(url, document.baseURI);
+      var scheme = parsed.protocol;
+      var ok = scheme === "http:" || scheme === "https:" ||
+        (scheme === "file:" && window.location.protocol === "file:" && !parsed.host); // opening index.html straight from disk
+      return ok ? parsed.href : "";
+    } catch (e) {
+      return "";
+    }
   }
 
   function buildMedia(p) {
@@ -51,7 +59,7 @@
       var a = el("a", "shot");
       a.href = src;
       a.target = "_blank";
-      a.rel = "noopener";
+      a.rel = "noopener noreferrer";
       var img = el("img");
       img.src = src;
       img.alt = (p.title || "Project") + " screenshot " + (i + 1);
@@ -114,7 +122,7 @@
       var a = el("a", "btn" + (actions.children.length ? " btn-alt" : ""), LINK_LABELS[key] || key + " ↗");
       a.href = url;
       a.target = "_blank";
-      a.rel = "noopener";
+      a.rel = "noopener noreferrer";
       actions.appendChild(a);
     });
     if (actions.children.length) body.appendChild(actions);

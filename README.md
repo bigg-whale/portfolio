@@ -40,7 +40,6 @@ Search the project for `TODO`:
 
 - SIH game: real name and final bullet wording (`js/projects.js`)
 - SIH game links: add the itch.io page / GitHub repo once the game is public (`js/projects.js`)
-- Optional link-preview image (`og:image` in `index.html`) once the site is live
 
 ## Animation
 
@@ -59,3 +58,18 @@ Edit the variables in `:root` at the top of `css/style.css`. One line per colour
 1. Push this folder to a public GitHub repo.
 2. Repo **Settings → Pages → Source:** deploy from branch `main`, folder `/ (root)`.
 3. The site appears at `https://<username>.github.io/<repo>/` after a minute or so.
+
+## Security rules (read before adding anything)
+
+The page has a strict security policy at the top of `index.html`. Things it blocks will silently not work and show an error in the browser console (F12):
+
+- no `style="..."` attributes and no `<style>` blocks: put styles in `css/style.css`
+- no inline `<script>` or `onclick="..."`: put code in a file in `js/`
+- images, audio and video must be files in this repo, not links to other sites
+- embeds, analytics or anything from another website need the policy line edited first
+
+Details: `docs/SECURITY.md`.
+
+## Docs
+
+`docs/PROJECT_MAP.md` (start here), `docs/ARCHITECTURE.md`, `docs/SECURITY.md`, `docs/RUNBOOK.md`, `docs/TESTING.md`, `docs/PLAN.md`, `docs/adr/`, `CHANGELOG.md`.

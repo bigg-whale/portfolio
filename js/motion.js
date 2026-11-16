@@ -3,12 +3,23 @@
 (function () {
   "use strict";
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  // Very old browsers: stay on the static page rather than hide content that could never be revealed.
+  if (!("IntersectionObserver" in window) || !window.requestAnimationFrame) return;
 
   var root = document.documentElement;
   root.classList.add("js-motion");
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
   // ---------- helpers ----------
+  // Text for screen readers: a <br> counts as a space, so "Slide into<br>my inbox." isn't read as "intomy".
+  function plainText(el) {
+    var copy = el.cloneNode(true);
+    Array.prototype.slice.call(copy.querySelectorAll("br")).forEach(function (br) {
+      br.parentNode.replaceChild(document.createTextNode(" "), br);
+    });
+    return copy.textContent.replace(/\s+/g, " ").trim();
+  }
+
   function splitWords(el, className) {
     Array.prototype.slice.call(el.childNodes).forEach(function (node) {
       if (node.nodeType !== 3) return;
@@ -28,7 +39,7 @@
   }
 
   function splitChars(el) {
-    if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
+    if (!el.getAttribute("aria-label")) el.setAttribute("aria-label", plainText(el));
     var i = 0;
     Array.prototype.slice.call(el.childNodes).forEach(function (node) {
       if (node.nodeType !== 3) return;
@@ -49,7 +60,7 @@
   // ---------- 1. hero entrance ----------
   var h1 = document.querySelector(".headline");
   if (h1) {
-    h1.setAttribute("aria-label", h1.textContent.replace(/\s+/g, " ").trim());
+    h1.setAttribute("aria-label", plainText(h1));
     splitWords(h1, "w");
     var outline = h1.querySelector(".outline");
     if (outline) splitWords(outline, "w");
@@ -91,23 +102,39 @@
     el.style.setProperty("--d", 0.3 + Math.min(i, 10) * 0.06 + "s");
   });
 
+  // 1 -> "st", 2 -> "nd" ... so "2nd" counts 1st, 2nd instead of flashing "0nd", "1nd"
+  function ordinal(n) {
+    var t = n % 100;
+    if (t >= 11 && t <= 13) return "th";
+    return ["th", "st", "nd", "rd"][n % 10] || "th";
+  }
+
+  // Sets the starting number right away (so the final value never flashes first)
+  // and returns a function that runs the count.
   function countUp(el) {
     var m = /^(\d+)(.*)$/.exec(el.textContent.trim());
-    if (!m) return;
+    if (!m) return null;
     var target = +m[1], rest = m[2], start = null, dur = 900;
+    var isOrdinal = /^(st|nd|rd|th)$/i.test(rest);
+    var upper = isOrdinal && rest === rest.toUpperCase();
+    var from = isOrdinal ? 1 : 0;
+    function show(n) {
+      var suffix = isOrdinal ? ordinal(n) : rest;
+      el.textContent = n + (upper ? suffix.toUpperCase() : suffix);
+    }
     if (target === 0) { // nothing to count: do a little glitch instead
       el.classList.add("glitch");
-      return;
+      return null;
     }
     function step(t) {
       if (start === null) start = t;
       var p = Math.min((t - start) / dur, 1);
       var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased) + rest;
+      show(Math.round(from + (target - from) * eased));
       if (p < 1) requestAnimationFrame(step);
     }
-    el.textContent = "0" + rest;
-    requestAnimationFrame(step);
+    show(from);
+    return function () { requestAnimationFrame(step); };
   }
 
   var io = new IntersectionObserver(function (entries) {
@@ -115,7 +142,8 @@
       if (!e.isIntersecting) return;
       e.target.classList.add("is-in");
       var num = e.target.querySelector && e.target.querySelector(".stat-num");
-      if (num) setTimeout(function () { countUp(num); }, 250);
+      var run = num && countUp(num);
+      if (run) setTimeout(run, 250);
       io.unobserve(e.target);
     });
   }, { threshold: 0.15, rootMargin: "0px 0px -8% 0px" });

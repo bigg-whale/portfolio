@@ -698,6 +698,8 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 .shape:nth-child(6) i { animation-duration: 4.5s; }
 @keyframes bob { from { transform: translateY(-12px) rotate(-8deg); } to { transform: translateY(12px) rotate(8deg); } }
 
+/* --k = how strongly each shape reacts to scrolling (kept here, not inline, so the security policy can ban inline styles) */
+.s-star { --k: 0.25; } .s-circle { --k: 0.12; } .s-square { --k: 0.3; } .s-plus { --k: 0.18; } .s-zig { --k: 0.22; } .s-dot { --k: 0.2; }
 .s-star   { top: 29%; left: calc(50% + 86px); }
 .s-star { filter: drop-shadow(1px 1px 0 var(--ink)) drop-shadow(1px 1px 0 var(--ink)) drop-shadow(1px 1px 0 var(--ink)) drop-shadow(1px 1px 0 var(--ink)) drop-shadow(1px 1px 0 var(--ink)); }
 .s-star i { width: 50px; height: 50px; background: linear-gradient(135deg, #ffc27a, var(--saffron) 55%, #e07a12); border: 3px solid var(--ink); clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
@@ -746,3 +748,10 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 .js-motion.hero-in .topbar    { animation: fadeUp 0.6s ease 0s backwards; }
 .js-motion.hero-in .bg-shapes { animation: fadeUp 1s ease 1s backwards; }
 .js-motion.hero-in .ticker    { animation: fadeUp 0.8s ease 1.4s backwards; }
+
+/* printing / save-as-PDF: show everything, even sections that never scrolled into view */
+@media print {
+  .js-motion [data-reveal], .js-motion h2.chars .ch { opacity: 1 !important; animation: none !important; }
+  .js-motion .progress .progress-fill { width: 23% !important; animation: none !important; }
+  .player { display: none; }
+}

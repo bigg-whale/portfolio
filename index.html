@@ -3,6 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Security policy: only this site's own files may run or load here, plus Google Fonts.
+       No inline scripts, no plugins, no forms, no outside requests. See docs/SECURITY.md before editing. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>SIN // INDIE DEV + CYBER</title>
   <meta name="description" content="Sin: solo indie game dev, second-year CSE student, learning cybersecurity. Makes games, breaks things.">
   <meta name="theme-color" content="#ff9933">
@@ -11,8 +15,13 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="SIN // INDIE DEV + CYBER">
   <meta property="og:description" content="I make games and break things. Still figuring out which one I'm better at.">
-  <!-- TODO: once the site is live, add a preview image for link shares:
-       <meta property="og:image" content="https://YOUR-USERNAME.github.io/REPO/assets/img/og.png"> -->
+  <meta property="og:url" content="https://bigg-whale.github.io/portfolio/">
+  <meta property="og:image" content="https://bigg-whale.github.io/portfolio/assets/img/sih-1.png">
+  <meta property="og:image:width" content="1137">
+  <meta property="og:image:height" content="647">
+  <meta property="og:image:alt" content="Screenshot of Sin's Smart India Hackathon earthquake-drill game">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://bigg-whale.github.io/portfolio/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,12 +50,12 @@
     <section class="band band-paper hero" id="top">
       <!-- decorative floating shapes -->
       <div class="bg-shapes" aria-hidden="true">
-        <span class="shape s-star"   style="--k:0.25"><i></i></span>
-        <span class="shape s-circle" style="--k:0.12"><i></i></span>
-        <span class="shape s-square" style="--k:0.3"><i></i></span>
-        <span class="shape s-plus"   style="--k:0.18"><i></i></span>
-        <span class="shape s-zig"    style="--k:0.22"><i></i></span>
-        <span class="shape s-dot"    style="--k:0.2"><i></i></span>
+        <span class="shape s-star"><i></i></span>
+        <span class="shape s-circle"><i></i></span>
+        <span class="shape s-square"><i></i></span>
+        <span class="shape s-plus"><i></i></span>
+        <span class="shape s-zig"><i></i></span>
+        <span class="shape s-dot"><i></i></span>
       </div>
       <div class="wrap hero-grid">
 
@@ -220,9 +229,9 @@
         <!-- A button with an empty href stays hidden, so nothing shows up as a dead link. -->
         <div class="contact-links">
           <a class="contact-btn c-saffron" href="mailto:rickrolloperator@gmail.com" data-contact><span>Email</span><span aria-hidden="true">↗</span></a>
-          <a class="contact-btn c-white" href="https://github.com/bigg-whale" data-contact target="_blank" rel="noopener"><span>GitHub</span><span aria-hidden="true">↗</span></a>
-          <a class="contact-btn c-teal" href="https://www.instagram.com/yash_5am/" data-contact target="_blank" rel="noopener"><span>Instagram</span><span aria-hidden="true">↗</span></a>
-          <a class="contact-btn c-ink" href="https://bigbonee.itch.io/" data-contact target="_blank" rel="noopener"><span>itch.io</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-btn c-white" href="https://github.com/bigg-whale" data-contact target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-btn c-teal" href="https://www.instagram.com/yash_5am/" data-contact target="_blank" rel="noopener noreferrer"><span>Instagram</span><span aria-hidden="true">↗</span></a>
+          <a class="contact-btn c-ink" href="https://bigbonee.itch.io/" data-contact target="_blank" rel="noopener noreferrer"><span>itch.io</span><span aria-hidden="true">↗</span></a>
         </div>
         <p class="contact-empty card">Links coming soon. Still picking usernames that aren't taken.</p>
       </div>

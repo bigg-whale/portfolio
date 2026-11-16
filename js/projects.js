@@ -12,6 +12,8 @@
 //   role     optional: who did what (shown in small text)
 //   images   screenshot paths, e.g. ["assets/img/sih-1.png"]. [] = placeholder box
 //   video    path to a video, e.g. "assets/video/sih.mp4". "" = show images instead
+//            (images and video must be files in this repo: the page's security
+//             policy blocks media hosted on other websites)
 //   bullets  list of features / points
 //   tags     short labels, shown in capitals
 //   links    { itch: "", github: "" }  empty = that button is hidden
