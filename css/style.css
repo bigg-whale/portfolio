@@ -376,6 +376,8 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 .progress { position: relative; margin-top: auto; height: 36px; border: 3px solid var(--ink); background: var(--paper); overflow: hidden; }
 .cook-main p + .progress { margin-top: 20px; }
 .progress-fill { position: absolute; inset: 0 auto 0 0; width: 23%; background: repeating-linear-gradient(-45deg, var(--saffron) 0 12px, var(--yellow) 12px 24px); border-right: 3px solid var(--ink); }
+/* "done" state: bar stays full (no stuck wobble) */
+.progress-done .progress-fill { width: 100%; border-right: 0; }
 .progress-text { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.1em; }
 
 /* =====================================================================
@@ -613,6 +615,9 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 .js-motion .progress:not(.is-in) .progress-fill { width: 0; }
 .js-motion .progress.is-in .progress-fill { animation: fill 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards, stuck 1.4s ease-in-out 1.8s infinite; }
 
+/* the finished bar fills once and stays full */
+.js-motion .progress-done.is-in .progress-fill { animation: fill 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+
 /* tilt + glare (mouse only, set by motion.js) */
 .feature-media[data-tilt] { transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
 .feature-media[data-tilt]:hover { transform: perspective(1000px) translate(-3px, -3px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)); }
@@ -793,5 +798,6 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 @media print {
   .js-motion [data-reveal], .js-motion h2.chars .ch { opacity: 1 !important; animation: none !important; }
   .js-motion .progress .progress-fill { width: 23% !important; animation: none !important; }
+  .js-motion .progress-done .progress-fill { width: 100% !important; }
   .player { display: none; }
 }

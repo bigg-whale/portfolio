@@ -2,6 +2,17 @@
 
 Format: Keep a Changelog. This project is not versioned; entries are dated.
 
+## [Unreleased] - 2026-11-17
+
+### Added
+- `links.play` link key ("Play in browser ↗" label in `render.js`) for projects that run on this site. Not used yet: the SinOS project card is deliberately left out of `js/projects.js` (owner will add it separately); screenshots `assets/img/sinos-1..2.png` are in place for it.
+- `sinos/`: play page that boots SinOS in the browser with the v86 emulator (v86 0.5.473, vendored in `sinos/v86/`), a 1 MiB boot disk and a lazily fetched 16 MiB FAT16 data disk. Own CSP (see `docs/SECURITY.md`, `docs/adr/0002-sinos-in-browser-via-v86.md`).
+- `.progress-done` style: finished progress bar, full, without the "stuck" wobble.
+- `docs/adr/0002-sinos-in-browser-via-v86.md`; play page sections in the docs.
+
+### Changed
+- Homepage: the "In the oven" SinOS card is now "Just shipped" ("BOOTED. FOR REAL.") and links to the play page; the stat now reads 1 operating system that boots; patch notes, profile card and About text no longer say it is unfinished.
+
 ## [Unreleased] - 2026-11-16
 
 ### Security

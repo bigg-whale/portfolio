@@ -1,0 +1,81 @@
+/* SinOS play page. Colours and fonts match css/style.css (:root tokens). */
+:root {
+  --paper:   #f4edda;
+  --saffron: #ff9933;
+  --yellow:  #f6d743;
+  --teal:    #20c9c7;
+  --ink:     #101014;
+  --white:   #fffaf0;
+  --border:  4px solid var(--ink);
+  --shadow:  8px 8px 0 var(--ink);
+  --shadow-sm: 4px 4px 0 var(--ink);
+  --font-head: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+a { color: inherit; text-decoration: underline; text-decoration-color: var(--saffron); text-decoration-thickness: 3px; text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+code { font-family: var(--font-mono); background: var(--yellow); padding: 0 4px; }
+.muted { opacity: 0.75; }
+
+.top { background: var(--saffron); border-bottom: var(--border); padding: 12px 16px; }
+.back { font-family: var(--font-mono); font-weight: 500; text-decoration: none; }
+.back:hover { text-decoration: underline; }
+
+.wrap { max-width: 1000px; margin: 0 auto; padding: 32px 16px 64px; }
+
+.kicker { font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 4px; }
+h1 { margin: 0 0 16px; font-family: var(--font-head); font-size: clamp(56px, 12vw, 120px); line-height: 0.9; text-transform: uppercase; }
+h2 { margin: 0 0 8px; font-family: var(--font-head); font-size: 32px; text-transform: uppercase; line-height: 1; }
+.lede { max-width: 70ch; font-size: 19px; }
+
+.machine { margin: 32px 0; border: var(--border); box-shadow: var(--shadow); background: var(--ink); }
+.machine-bar { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: var(--white); border-bottom: var(--border); font-family: var(--font-mono); font-size: 14px; }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--saffron); border: 2px solid var(--ink); flex: none; }
+.status { flex: 1; min-width: 0; }
+
+/* v86 draws text mode into .screen-text and graphics into .screen-canvas;
+   it shows one and hides the other, and sets their pixel sizes itself. */
+.screen {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  min-height: 420px;
+  overflow-x: auto;
+  background: #000;
+  color: #ccc;
+}
+.screen:focus-visible { outline-offset: -3px; }
+.screen-text { white-space: pre; font: 16px/16px monospace; }
+/* v86 sets the canvas size inline (e.g. 512 x 320); stretch the 320 x 200
+   graphics to the full width instead, keeping the shape. */
+.screen-canvas { display: none; image-rendering: pixelated; width: 100% !important; height: auto !important; }
+
+.btn {
+  font: 700 22px var(--font-head); text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--saffron); color: var(--ink);
+  border: var(--border); box-shadow: var(--shadow-sm);
+  padding: 10px 22px; cursor: pointer;
+}
+.btn:hover { background: var(--yellow); }
+.btn:active { transform: translate(4px, 4px); box-shadow: none; }
+.btn-small { font-size: 16px; padding: 2px 12px; border-width: 3px; box-shadow: none; }
+.boot { position: absolute; }
+
+.how { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.card { background: var(--white); border: var(--border); box-shadow: var(--shadow-sm); padding: 20px; }
+.card ol, .card ul { margin: 0 0 12px; padding-left: 22px; }
+.credits { margin-top: 32px; font-size: 14px; }
