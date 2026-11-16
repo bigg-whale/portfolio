@@ -156,6 +156,10 @@
       if (es[0].isIntersecting) { prog.classList.add("is-in"); pio.disconnect(); }
     }, { threshold: 0.6 });
     pio.observe(prog);
+    // its "stuck" wobble animates width (costs layout every frame), so only run it while on screen
+    new IntersectionObserver(function (es) {
+      prog.classList.toggle("is-live", es[0].isIntersecting);
+    }).observe(prog);
   }
 
   // ---------- 3. tickers that react to scrolling ----------
@@ -174,12 +178,24 @@
   });
   tracks.forEach(function (t) { tio.observe(t.el.parentNode); });
 
+  // The scroll handler only takes notes; all page writes happen once per frame in tick().
+  // (Measuring or restyling inside the handler made scrolling stutter.)
   var hero = document.querySelector(".hero");
+  // --sy (scroll position) is set on each shape itself. It is registered as non-inherited in the CSS,
+  // so the bobbing <i> inside every shape is left alone instead of being restyled on every scroll frame.
+  var shapes = Array.prototype.slice.call(document.querySelectorAll(".bg-shapes .shape"));
+  var heroH = 0, syDirty = true, lastSy = "";
+  function measureHero() { heroH = hero ? hero.offsetHeight : 0; syDirty = true; }
+  measureHero();
+  window.addEventListener("resize", measureHero);
+  window.addEventListener("load", measureHero);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureHero);
+
   var lastY = window.scrollY, boost = 0, scrollDir = 1, last = performance.now();
   window.addEventListener("scroll", function () {
     var y = window.scrollY, dy = y - lastY;
     lastY = y;
-    if (hero && y < hero.offsetHeight + 200) hero.style.setProperty("--sy", y.toFixed(0));
+    syDirty = true;
     if (dy) scrollDir = dy > 0 ? 1 : -1;
     boost = Math.min(boost + Math.abs(dy) * 0.9, 900);
   }, { passive: true });
@@ -187,6 +203,16 @@
   function tick(now) {
     var dt = Math.min((now - last) / 1000, 0.05);
     last = now;
+    if (syDirty) {
+      syDirty = false;
+      if (shapes.length && lastY < heroH + 200) {
+        var sy = lastY.toFixed(0);
+        if (sy !== lastSy) {
+          lastSy = sy;
+          for (var s = 0; s < shapes.length; s++) shapes[s].style.setProperty("--sy", sy);
+        }
+      }
+    }
     boost *= Math.pow(0.92, dt * 60);
     tracks.forEach(function (t) {
       var half = t.half;

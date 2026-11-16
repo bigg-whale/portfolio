@@ -16,6 +16,12 @@ Format: Keep a Changelog. This project is not versioned; entries are dated.
 - `motion.js` no longer hides content in browsers without `IntersectionObserver`.
 - Printing / saving as PDF showed blank areas for sections not yet scrolled into view.
 
+### Performance
+- Scroll handler no longer measures layout or restyles the hero on every scroll event; the scroll value is written once per frame, straight onto the six floating shapes (`--sy` registered as non-inherited).
+- Tickers and shapes keep their own compositor layers (`will-change`).
+- The SinOS progress-bar wobble (a `width` animation) pauses while off screen.
+- Measured in Chromium at 6x CPU throttle, 90 wheel steps over hero + first belt: frames over 20 ms fell from about 73 to about 26. Not measured on real devices, Firefox or Safari.
+
 ### Added
 - Link-preview metadata: `og:url`, `og:image` (first game screenshot), `twitter:card`, canonical URL.
 - Documentation set under `docs/`.

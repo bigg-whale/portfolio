@@ -749,6 +749,13 @@ a { color: inherit; text-decoration: underline; text-decoration-color: var(--saf
 .js-motion.hero-in .bg-shapes { animation: fadeUp 1s ease 1s backwards; }
 .js-motion.hero-in .ticker    { animation: fadeUp 0.8s ease 1.4s backwards; }
 
+/* smooth scrolling: keep the moving pieces on their own GPU layers, and pause work nobody can see */
+.js-motion .ticker-track { will-change: transform; }
+.js-motion .shape { will-change: transform, translate; }
+/* --sy only matters on the shape it is set on; not passing it down to children keeps scrolling cheap */
+@property --sy { syntax: "<number>"; inherits: false; initial-value: 0; }
+.js-motion .progress.is-in:not(.is-live) .progress-fill { animation-play-state: paused; }
+
 /* printing / save-as-PDF: show everything, even sections that never scrolled into view */
 @media print {
   .js-motion [data-reveal], .js-motion h2.chars .ch { opacity: 1 !important; animation: none !important; }
