@@ -13,7 +13,7 @@ js/projects.js    data only: window.PROJECTS
 js/render.js      builds project cards from window.PROJECTS; safeUrl; profile photo swap; profile card alignment
 js/player.js      play / pause for the corner audio player
 js/motion.js      all animation: hero entrance, scroll reveals, count-up, tickers, tilt
-assets/img        me.jpg (profile), sih-1..4.png (screenshots; sih-1 doubles as og:image), sinos-1..2.png (SinOS screenshots)
+assets/img        me.jpg (profile), sih-1..4.png (screenshots; sih-1 doubles as og:image), sinos-1..2.png (SinOS screenshots, reserved for a future SinOS project card; currently unreferenced)
 assets/audio      trouble.mp3
 sinos/            play page, separate document with its own (relaxed) CSP:
   index.html      page shell + CSP meta
@@ -26,7 +26,7 @@ docs/             this documentation set
 Local-only, git-ignored: `.claude/`, `.playwright-mcp/`, `DESIGN.md`, `portfolio-design.md`.
 
 ## Entry points and load order
-`sinos/index.html` is an independent entry point (linked from the SinOS card via `links.play = "sinos/"`); it loads `v86/libv86.js` then `play.js` and shares no JS with the homepage. See `docs/ARCHITECTURE.md`.
+`sinos/index.html` is an independent entry point (linked from the "Just shipped" SinOS card in the "In the oven" section of `index.html`; SinOS is not in `window.PROJECTS`); it loads `v86/libv86.js` then `play.js` and shares no JS with the homepage. See `docs/ARCHITECTURE.md`.
 
 `index.html` loads, at the end of `<body>` and in this order: `projects.js` → `render.js` → `player.js` → `motion.js`. Order matters: `render.js` needs `window.PROJECTS`; `motion.js` decorates the cards `render.js` created.
 

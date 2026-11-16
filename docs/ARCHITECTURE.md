@@ -21,7 +21,7 @@ A separate document, not rendered by `render.js`. The homepage links to it with 
 
 ```mermaid
 flowchart LR
-  H[index.html SinOS card] -->|link sinos/| S[sinos/index.html + CSP meta]
+  H[index.html "Just shipped" SinOS card] -->|link sinos/| S[sinos/index.html + CSP meta]
   S --> PJ[play.js]
   PJ -->|new V86 config| V[v86/libv86.js]
   V -->|compiles| W[v86/v86.wasm]
@@ -53,7 +53,7 @@ Data flow: the user clicks "Boot SinOS" (no autoboot) -> `play.js` constructs th
 | `links` | object | key → URL; `play` ("Play in browser", local relative path such as `sinos/`), `itch` and `github` have labels, other keys use the key as label; empty or unsafe URLs render nothing |
 | `featured` | boolean | `true` = large two-box layout; others go in the grid |
 
-Postconditions of `render.js`: one `<article>` per project inside `#projects`; `#games-title` ("The work" when more than one project) and `[data-count="projects"]` (plus its label, plural when not 1) follow the list length; `safeUrl` returns `""` or an absolute `http:`/`https:` URL (`file:` only when the page is on `file:`).
+Postconditions of `render.js`: one `<article>` per project inside `#projects`; `#games-title` ("The games" when more than one project) and `[data-count="projects"]` (plus its label, plural when not 1) follow the list length; `safeUrl` returns `""` or an absolute `http:`/`https:` URL (`file:` only when the page is on `file:`).
 
 ## motion.js behaviour
 Exits early, leaving the static page, when `prefers-reduced-motion: reduce` is set or `IntersectionObserver` / `requestAnimationFrame` is missing. Otherwise adds `html.js-motion`, then `html.hero-in` after two frames. Scroll reveals use one `IntersectionObserver` and unobserve after firing. Tickers are driven by a single rAF loop, and skip work when off-screen. Tilt is fine-pointer only.

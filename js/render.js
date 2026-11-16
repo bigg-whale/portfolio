@@ -146,7 +146,7 @@
 
     // Titles and counters follow the real list, so numbers never disagree.
     var title = document.getElementById("games-title");
-    if (title && list.length > 1) title.textContent = "The work";
+    if (title && list.length > 1) title.textContent = "The games";
     document.querySelectorAll('[data-count="projects"]').forEach(function (n) {
       n.textContent = String(list.length);
       var label = n.nextElementSibling;

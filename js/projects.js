@@ -16,8 +16,7 @@
 //             policy blocks media hosted on other websites)
 //   bullets  list of features / points
 //   tags     short labels, shown in capitals
-//   links    { play: "", itch: "", github: "" }  empty = that button is hidden
-//            play = a page on this site that runs it in the browser, e.g. "sinos/"
+//   links    { itch: "", github: "" }  empty = that button is hidden
 //   featured true = big layout
 // =====================================================================
 
@@ -47,29 +46,5 @@ window.PROJECTS = [
       github: ""  // not public yet: add the repo URL here when it is
     },
     featured: true
-  },
-  {
-    num: "02 / FROM SCRATCH",
-    title: "SinOS",
-    hook: "I wrote an operating system. It boots. You can play snake on it. In your browser.",
-    blurb: "A 32-bit x86 OS written from zero in C and NASM assembly: own bootloader, multitasking, user programs, a real disk with FAT16, and a shell. No Linux underneath, just me and a lot of triple faults.",
-    role: "Solo. Written from zero in C and assembly, with an AI pair-programmer explaining every step.",
-    images: [
-      "assets/img/sinos-1.png", // Sin Snake running in VGA mode 13h
-      "assets/img/sinos-2.png"  // the SinOS shell after quitting the game
-    ],
-    video: "",
-    bullets: [
-      "Boots from its own two-stage bootloader (or GRUB) into protected mode, with interrupts, a timer and a keyboard driver I wrote myself.",
-      "Paging, a heap and preemptive multitasking, plus ring-3 user programs that talk to the kernel through system calls.",
-      "Reads and writes a real FAT16 disk, with a shell that has ls, cat, write, rm, run and ps.",
-      "Draws its own pixels (VGA mode 13h) and ships an original snake game, Sin Snake."
-    ],
-    tags: ["C", "x86 Assembly", "OS Dev", "QEMU"],
-    links: {
-      play: "sinos/",
-      itch: "",
-      github: "" // source repo is local only for now
-    }
   }
 ];

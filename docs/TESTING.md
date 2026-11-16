@@ -24,7 +24,7 @@ Run on a Range-capable static server (`python -m http.server` is INFERENCE-unsui
 4. `ls /disk`, then `write` a file on `/disk` and `cat` it back (network panel shows `data.img` requests with `Range` headers and 206 responses).
 5. `game`: Sin Snake starts, arrow keys/WASD steer, the page does not scroll, pause works, quit returns to the shell.
 6. Restart button reboots; disk writes from before are gone (memory-only).
-7. Homepage: SinOS card shows "Just shipped", full bar "BOOTED. FOR REAL.", "Play in browser" button opens `sinos/`; stats read 2 projects / 1 OS; with reduced motion and with JS off the page is readable.
+7. Homepage: section 01 shows only the SIH game ("The game"); the "In the oven" SinOS card shows "Just shipped", full bar "BOOTED. FOR REAL.", and its "play SinOS" link opens `sinos/`; stats read 1 project / 1 OS; with reduced motion and with JS off the page is readable.
 8. `node --check` on `js/render.js`, `js/projects.js` and `sinos/play.js`.
 
 Verified 2026-11-17 in a local Chromium (VERIFIED): steps 1-6 for boot, shell commands, `/disk` listing + write + read back, game start, arrow-key steering, pause, quit to shell, and arrow keys not scrolling the page while the screen has focus.
