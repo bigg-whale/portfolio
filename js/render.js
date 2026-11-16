@@ -2,7 +2,8 @@
 (function () {
   "use strict";
 
-  var LINK_LABELS = { itch: "Play on itch.io ↗", github: "Source on GitHub ↗" };
+  // Link keys with a nice label. "play" = a page on this site that runs the project in the browser (relative path, e.g. "sinos/").
+  var LINK_LABELS = { play: "Play in browser ↗", itch: "Play on itch.io ↗", github: "Source on GitHub ↗" };
 
   // Small helper: make an element with a class and optional text.
   function el(tag, className, text) {
@@ -145,7 +146,7 @@
 
     // Titles and counters follow the real list, so numbers never disagree.
     var title = document.getElementById("games-title");
-    if (title && list.length > 1) title.textContent = "The games";
+    if (title && list.length > 1) title.textContent = "The work";
     document.querySelectorAll('[data-count="projects"]').forEach(function (n) {
       n.textContent = String(list.length);
       var label = n.nextElementSibling;

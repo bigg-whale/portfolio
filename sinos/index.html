@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Differs from the homepage CSP on purpose (see docs/SECURITY.md):
+       'wasm-unsafe-eval' lets the v86 emulator compile its WebAssembly,
+       connect-src 'self' lets it fetch the BIOS and disk images from this
+       site, worker-src blob: lets it start its helper worker (built from
+       its own bundled code), blob: in img-src covers its screen canvas,
+       sound is switched off (no audio worklet needed), and the trusted-types rules
+       are left out because v86 writes its text-mode screen with innerHTML. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; worker-src blob:; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>SinOS // PLAY IN YOUR BROWSER</title>
+  <meta name="description" content="SinOS, a hobby 32-bit operating system written from scratch in C and assembly. Boot it right here in your browser and play Sin Snake.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='4' y='4' width='56' height='56' fill='%23ff9933' stroke='%23101014' stroke-width='6'/%3E%3Ctext x='32' y='45' font-family='Arial Black,Arial,sans-serif' font-weight='900' font-size='34' text-anchor='middle' fill='%23101014'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="canonical" href="https://bigg-whale.github.io/portfolio/sinos/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="play.css">
+</head>
+<body>
+  <header class="top">
+    <a class="back" href="../#games">&larr; Back to the portfolio</a>
+  </header>
+
+  <main class="wrap">
+    <p class="kicker">Operating system, from scratch</p>
+    <h1>SinOS</h1>
+    <p class="lede">A 32-bit operating system I wrote from zero in C and assembly: its own bootloader, interrupts, memory paging, multitasking, user programs, a FAT16 disk driver, a shell, pixel graphics, and a snake game. This is the real thing, booting inside a PC emulator in your browser.</p>
+
+    <section class="machine" aria-label="SinOS running in an emulated PC">
+      <div class="machine-bar">
+        <span class="dot"></span>
+        <span id="status" class="status" role="status">Press the button to boot.</span>
+        <button id="restart" class="btn btn-small" type="button" hidden>Restart</button>
+      </div>
+      <div id="screen" class="screen" tabindex="0" aria-label="SinOS screen. Click here, then type.">
+        <div class="screen-text"></div>
+        <canvas class="screen-canvas"></canvas>
+        <button id="boot" class="btn boot" type="button">Boot SinOS</button>
+      </div>
+    </section>
+
+    <div class="how">
+      <div class="card">
+        <h2>Try it</h2>
+        <ol>
+          <li>Click <b>Boot SinOS</b> and wait for <code>sinos&gt;</code>.</li>
+          <li>Click the screen so it gets your keyboard.</li>
+          <li>Type <code>game</code> and press Enter.</li>
+        </ol>
+        <p class="muted">Other commands: <code>help</code>, <code>ls /</code>, <code>cat /readme.txt</code>, <code>run hello</code>, <code>ps</code>, <code>ls /disk</code>.</p>
+      </div>
+      <div class="card">
+        <h2>Sin Snake</h2>
+        <ul>
+          <li><b>Arrows</b> or <b>WASD</b>: steer</li>
+          <li><b>P</b>: pause</li>
+          <li><b>Q</b> or <b>Esc</b>: back to the shell</li>
+          <li><b>Space</b>: play again after a crash</li>
+        </ul>
+        <p class="muted">The high score is saved to SinOS's disk, but here that disk lives in your browser's memory, so it resets when you reload the page.</p>
+      </div>
+    </div>
+
+    <p class="credits muted">Desktop keyboard needed. Runs on <a href="https://github.com/copy/v86">v86</a> (BSD-2-Clause, <a href="v86/LICENSE">licence</a>) with SeaBIOS and the LGPL VGA BIOS (<a href="v86/COPYING.LESSER">LGPL-3.0</a>).</p>
+  </main>
+
+  <script src="v86/libv86.js"></script>
+  <script src="play.js"></script>
+</body>
+</html>

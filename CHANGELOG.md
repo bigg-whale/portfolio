@@ -2,6 +2,18 @@
 
 Format: Keep a Changelog. This project is not versioned; entries are dated.
 
+## [Unreleased] - 2026-11-17
+
+### Added
+- SinOS (the owner's hobby OS) as a second project card, with two screenshots and a "Play in browser" button (`links.play`; new label in `render.js`).
+- `sinos/`: play page that boots SinOS in the browser with the v86 emulator (v86 0.5.473, vendored in `sinos/v86/`), a 1 MiB boot disk and a lazily fetched 16 MiB FAT16 data disk. Own CSP (see `docs/SECURITY.md`, `docs/adr/0002-sinos-in-browser-via-v86.md`).
+- `.progress-done` style: finished progress bar, full, without the "stuck" wobble.
+- `docs/adr/0002-sinos-in-browser-via-v86.md`; play page sections in the docs.
+
+### Changed
+- Homepage: the "In the oven" SinOS card is now "Just shipped" ("BOOTED. FOR REAL.") and links to the play page; stats now read 2 projects shipped and 1 operating system that boots; patch notes, profile card and About text no longer say it is unfinished.
+- Section 01 heading is "The work" (was "The game" / "The games") since it holds two projects.
+
 ## [Unreleased] - 2026-11-16
 
 ### Security
