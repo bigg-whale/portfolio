@@ -22,6 +22,9 @@ Format: Keep a Changelog. This project is not versioned; entries are dated.
 - The SinOS progress-bar wobble (a `width` animation) pauses while off screen.
 - Measured in Chromium at 6x CPU throttle, 90 wheel steps over hero + first belt: frames over 20 ms fell from about 73 to about 26. Not measured on real devices, Firefox or Safari.
 
+- Star and plus shapes: the stacked `drop-shadow` filters (re-run by the GPU every frame while the shapes bob) are replaced by a plain clipped shape in `::before`. Compositor draw time while idle on the hero fell from about 1.3 ms to about 0.26 ms per frame in Chromium on the dev machine. Visible difference: the shadow corners are slightly crisper at 6x zoom; depths were fitted by pixel-diff.
+- Where supported (`animation-timeline: scroll()`), the shapes follow the scrollbar through a compositor scroll-driven animation instead of JavaScript; other browsers keep the JS path.
+
 ### Added
 - Link-preview metadata: `og:url`, `og:image` (first game screenshot), `twitter:card`, canonical URL.
 - Documentation set under `docs/`.

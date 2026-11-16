@@ -184,6 +184,12 @@
   // --sy (scroll position) is set on each shape itself. It is registered as non-inherited in the CSS,
   // so the bobbing <i> inside every shape is left alone instead of being restyled on every scroll frame.
   var shapes = Array.prototype.slice.call(document.querySelectorAll(".bg-shapes .shape"));
+  // Newer browsers tie the shapes to the scrollbar in CSS alone (see "shape-scroll" in style.css);
+  // then there is nothing for this script to do per frame.
+  if (window.CSS && CSS.supports && CSS.supports("animation-timeline: scroll()")) {
+    root.classList.add("scroll-shapes");
+    shapes = [];
+  }
   var heroH = 0, syDirty = true, lastSy = "";
   function measureHero() { heroH = hero ? hero.offsetHeight : 0; syDirty = true; }
   measureHero();
